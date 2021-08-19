@@ -16,8 +16,8 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-    private final static Logger logger = Logger.getLogger(App.class);
 
+    private static final String FILE_MUSIC = "src/main/resources/augustobellinaso/showdomilhao/songs/som-abertura-2.mp3";
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -27,6 +27,10 @@ public class App extends Application {
             Scene scene = new Scene(root, 400, 400);
             primaryStage.setScene(scene);
             primaryStage.show();
+
+            ContinuousReproduction reproduction = new ContinuousReproduction(FILE_MUSIC, true);
+            reproduction.start();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
