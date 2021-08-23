@@ -45,4 +45,14 @@ public class Jogador {
     public void setLinha(Integer linha) {
         this.linha = linha;
     }
+
+    @Override
+    public String toString() {
+        return "Jogador{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", pontuacao=" + pontuacao +
+                ", linha=" + linha +
+                '}';
+    }
 }
