@@ -6,10 +6,17 @@ import augustobellinaso.showdomilhao.util.LogUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JogadorDAO {
 
     private Connection connection;
+
+    private static final String QUERY_CONSULTAR_TODOS = "SELECT * FROM jogador";
+    private static final String QUERY_LISTAR_RANKING = "SELECT * FROM jogador ORDER BY pontuacao DESC LIMIT 10";
+
 
     public JogadorDAO() {
         connection = ConnectionFactory.getConnection();
@@ -18,7 +25,7 @@ public class JogadorDAO {
     public boolean adicionar(Jogador jogador) {
         try {
             String sql = "INSERT INTO jogador (id, nome, pontuacao) VALUES ($next_id, ? , ?)";
-            try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(2, jogador.getNome());
                 statement.setInt(3, jogador.getPontuacao());
                 statement.executeUpdate();
@@ -34,7 +41,7 @@ public class JogadorDAO {
     public void atualizar(Jogador jogador) {
         try {
             String sql = "UPDATE jogador SET nome = ?, pontuacao = ? WHERE id = ?";
-            try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, jogador.getNome());
                 statement.setInt(2, jogador.getPontuacao());
                 statement.setInt(3, jogador.getId());
@@ -44,5 +51,35 @@ public class JogadorDAO {
         } catch (Exception e) {
             LogUtil.getLogger(JogadorDAO.class).error(e.getCause().toString());
         }
+    }
+
+    private List<Jogador> buscar(String sql) {
+        List<Jogador> jogadores = new ArrayList<>();
+        try {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Jogador jogador = new Jogador();
+                        jogador.setId(resultSet.getInt("id"));
+                        jogador.setNome(resultSet.getString("nome"));
+                        jogador.setLinha(resultSet.getRow());
+                        jogador.setPontuacao(resultSet.getInt("pontuacao"));
+                        jogadores.add(jogador);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            LogUtil.getLogger(JogadorDAO.class).error(e.getCause().toString());
+        }
+        return jogadores;
+    }
+
+    public List<Jogador> listar() {
+        return buscar(QUERY_CONSULTAR_TODOS);
+    }
+
+    public List<Jogador> listarRanking() {
+        return buscar(QUERY_LISTAR_RANKING);
     }
 }
