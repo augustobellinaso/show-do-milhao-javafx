@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 
 public class ConnectionFactory {
 
-    private static final String URL_CONNECTION = "jdbc:sqlite:src/main/resources/data/show_milhao.db";
+    private static final String URL_CONNECTION = "jdbc:sqlite:src/main/resources/augustobellinaso/showdomilhao/data/show_milhao.db";
 
     private static Connection connection;
 

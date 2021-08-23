@@ -1,17 +1,15 @@
 package augustobellinaso.showdomilhao.application;
 
+import augustobellinaso.showdomilhao.connection.ConnectionFactory;
 import augustobellinaso.showdomilhao.util.LogConfigurator;
 import augustobellinaso.showdomilhao.util.LogUtil;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  * JavaFX App
@@ -32,10 +30,17 @@ public class App extends Application {
 
             ContinuousReproduction reproduction = new ContinuousReproduction(FILE_MUSIC, false);
             reproduction.start();
-//            JLayer jLayer = new JLayer();
-//            File mp3 = new File("src/main/resources/augustobellinaso/showdomilhao/songs/tire-a-carta-do-baralho-voice.mp3");
-//            jLayer.tocar(mp3);
-//            jLayer.start();
+
+            Connection connection = ConnectionFactory.getConnection();
+            String sql = "INSERT INTO jogador (id, nome, pontuacao) VALUES ($next_id, ?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(2, "Augusto");
+                statement.setInt(3, 200);
+                statement.execute();
+                connection.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
