@@ -14,6 +14,9 @@ public class JogadorDAO {
 
     private Connection connection;
 
+    private static final String QUERY_INSERT = "INSERT INTO jogador (id, nome, pontuacao) VALUES ($next_id, ? , ?)";
+    private static final String QUERY_UPDATE = "UPDATE jogador SET nome = ?, pontuacao = ? WHERE id = ?";
+    private static final String QUERY_ZERAR_RANKING = "DELETE FROM jogador";
     private static final String QUERY_CONSULTAR_TODOS = "SELECT * FROM jogador";
     private static final String QUERY_LISTAR_RANKING = "SELECT * FROM jogador ORDER BY pontuacao DESC LIMIT 10";
 
@@ -24,8 +27,7 @@ public class JogadorDAO {
 
     public boolean adicionar(Jogador jogador) {
         try {
-            String sql = "INSERT INTO jogador (id, nome, pontuacao) VALUES ($next_id, ? , ?)";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (PreparedStatement statement = connection.prepareStatement(QUERY_INSERT)) {
                 statement.setString(2, jogador.getNome());
                 statement.setInt(3, jogador.getPontuacao());
                 statement.executeUpdate();
@@ -40,8 +42,7 @@ public class JogadorDAO {
 
     public void atualizar(Jogador jogador) {
         try {
-            String sql = "UPDATE jogador SET nome = ?, pontuacao = ? WHERE id = ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE)) {
                 statement.setString(1, jogador.getNome());
                 statement.setInt(2, jogador.getPontuacao());
                 statement.setInt(3, jogador.getId());
@@ -81,5 +82,16 @@ public class JogadorDAO {
 
     public List<Jogador> listarRanking() {
         return buscar(QUERY_LISTAR_RANKING);
+    }
+
+    public void zerarRanking() {
+        try {
+            try (PreparedStatement statement = connection.prepareStatement(QUERY_ZERAR_RANKING)) {
+                statement.executeUpdate();
+                connection.commit();
+            }
+        } catch (Exception e) {
+            LogUtil.getLogger(JogadorDAO.class).error(e.getCause().toString());
+        }
     }
 }
