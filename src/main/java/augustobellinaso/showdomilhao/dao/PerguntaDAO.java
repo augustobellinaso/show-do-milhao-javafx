@@ -7,6 +7,10 @@ import augustobellinaso.showdomilhao.util.LogUtil;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class PerguntaDAO {
 
@@ -74,5 +78,36 @@ public class PerguntaDAO {
         } catch (Exception e) {
             LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
         }
+    }
+
+    private List<Pergunta> buscar(String sql, String nivel) {
+        List<Pergunta> perguntas = new ArrayList<>();
+        try {
+            try(PreparedStatement statement = connection.prepareStatement(sql)) {
+                if (Objects.nonNull(nivel)) {
+                    statement.setString(1, nivel);
+                }
+                try(ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Pergunta pergunta = new Pergunta();
+                        pergunta.setId(resultSet.getInt("id"));
+                        pergunta.setNivel(resultSet.getString("nivel"));
+                        pergunta.setEnunciado(resultSet.getString("enunciado"));
+                        pergunta.setAlternativa1(resultSet.getString("alternativa1"));
+                        pergunta.setAlternativa2(resultSet.getString("alternativa2"));
+                        pergunta.setAlternativa3(resultSet.getString("alternativa3"));
+                        pergunta.setResposta(resultSet.getString("resposta"));
+                        perguntas.add(pergunta);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
+        }
+
+
+
+        return perguntas;
     }
 }
