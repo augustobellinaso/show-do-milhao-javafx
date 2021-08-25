@@ -13,6 +13,7 @@ public class PerguntaDAO {
     private static final String QUERY_ADICIONAR_PERGUNTA = "INSERT INTO perguntas (id, nivel, enunciado, alternativa1," +
             "alternativa2, alternativa3, resposta) VALUES ($next_id, ?, ?, ?, ?, ?, ?)";
     private static final String QUERY_ATUALIZAR_PERGUNTA = "UPDATE perguntas SET nivel = ?, enunciado = ?, alternativa1 = ?, alternativa2 = ?, alternativa3 = ?, resposta = ? WHERE id = ?";
+    private static final String QUERY_EXCLUIR_PERGUNTA = "DELETE FROM perguntas WHERE id = ?";
     private static final String OK = "Processo concluído";
     private static final int MESSAGE_TYPE = JOptionPane.INFORMATION_MESSAGE;
 
@@ -56,6 +57,20 @@ public class PerguntaDAO {
             }
             JOptionPane.showMessageDialog(new JFrame(), "Alterações realizadas com sucesso!", OK, MESSAGE_TYPE);
 
+        } catch (Exception e) {
+            LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
+        }
+    }
+
+    public void remover(Integer idPergunta) {
+        try {
+            try(PreparedStatement statement = connection.prepareStatement(QUERY_EXCLUIR_PERGUNTA)) {
+                statement.setInt(1, idPergunta);
+                statement.executeUpdate();
+                connection.commit();
+                JOptionPane.showMessageDialog(new JFrame(), "Pergunta removida com sucesso!", OK, MESSAGE_TYPE);
+
+            }
         } catch (Exception e) {
             LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
         }
