@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 public class PerguntaDAO {
 
     private static final String QUERY_ADICIONAR_PERGUNTA = "INSERT INTO perguntas (id, nivel, enunciado, alternativa1," +
-            "alternativa2, alternative3, resposta) VALUES ($next_id, ?, ?, ?, ?, ?, ?)";
+            "alternativa2, alternativa3, resposta) VALUES ($next_id, ?, ?, ?, ?, ?, ?)";
     private static final String OK = "Processo concluído";
     private static final int MESSAGE_TYPE = JOptionPane.INFORMATION_MESSAGE;
 
