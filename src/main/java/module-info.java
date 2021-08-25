@@ -4,6 +4,7 @@ module augustobellinaso.showdomilhao {
     requires log4j;
     requires jlayer;
     requires java.sql;
+    requires java.desktop;
 
 
     exports augustobellinaso.showdomilhao.application;
