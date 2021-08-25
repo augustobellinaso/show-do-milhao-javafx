@@ -20,6 +20,8 @@ public class PerguntaDAO {
     private static final String QUERY_EXCLUIR_PERGUNTA = "DELETE FROM perguntas WHERE id = ?";
     private static final String OK = "Processo concluído";
     private static final int MESSAGE_TYPE = JOptionPane.INFORMATION_MESSAGE;
+    private static final String QUERY_BUSCAR_TODAS = "SELECT * FROM perguntas";
+    private static final String QUERY_BUSCAR_POR_NIVEL = "SELECT * FROM perguntas WHERE nivel = ?";
 
     private Connection connection;
 
@@ -105,9 +107,22 @@ public class PerguntaDAO {
         } catch (Exception e) {
             LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
         }
-
-
-
         return perguntas;
+    }
+
+    public List<Pergunta> listar() {
+        return buscar(QUERY_BUSCAR_TODAS, null);
+    }
+
+    public List<Pergunta> listar(String nivel) {
+        return buscar(QUERY_BUSCAR_POR_NIVEL, nivel);
+    }
+
+    public List<Pergunta> listar(String idsPerguntasFeitas, String nivel) {
+        String sql = "SELECT * FROM perguntas WHERE nivel = ? ORDER BY RANDOM() LIMIT 1";
+        if (idsPerguntasFeitas.isEmpty()) {
+            sql = "SELECT * FROM perguntas WHERE nivel = ? AND perguntas.id NOT IN " + idsPerguntasFeitas + " ORDER BY RANDOM() LIMIT 1";
+        }
+        return buscar(sql, nivel);
     }
 }
