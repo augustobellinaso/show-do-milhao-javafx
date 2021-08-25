@@ -12,6 +12,9 @@ public class PerguntaDAO {
 
     private static final String QUERY_ADICIONAR_PERGUNTA = "INSERT INTO perguntas (id, nivel, enunciado, alternativa1," +
             "alternativa2, alternative3, resposta) VALUES ($next_id, ?, ?, ?, ?, ?, ?)";
+    private static final String OK = "Processo concluído";
+    private static final int MESSAGE_TYPE = JOptionPane.INFORMATION_MESSAGE;
+
     private Connection connection;
 
     public PerguntaDAO() {
@@ -30,7 +33,7 @@ public class PerguntaDAO {
                 statement.executeUpdate();
                 connection.commit();
             }
-            JOptionPane.showMessageDialog(new JFrame(), "Pergunta adicionada com sucesso!", "Processo concluído", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Pergunta adicionada com sucesso!", OK, MESSAGE_TYPE);
 
         } catch (Exception e) {
             LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
