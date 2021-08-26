@@ -14,14 +14,17 @@ import java.util.Objects;
 
 public class PerguntaDAO {
 
+    private static final String ORDER_BY_RANDOM_LIMIT = " ORDER BY RANDOM() LIMIT 1";
     private static final String QUERY_ADICIONAR_PERGUNTA = "INSERT INTO perguntas (id, nivel, enunciado, alternativa1," +
             "alternativa2, alternativa3, resposta) VALUES ($next_id, ?, ?, ?, ?, ?, ?)";
     private static final String QUERY_ATUALIZAR_PERGUNTA = "UPDATE perguntas SET nivel = ?, enunciado = ?, alternativa1 = ?, alternativa2 = ?, alternativa3 = ?, resposta = ? WHERE id = ?";
     private static final String QUERY_EXCLUIR_PERGUNTA = "DELETE FROM perguntas WHERE id = ?";
+    private static final String QUERY_SELECT_NIVEL_RANDOM_LIMIT = "SELECT * FROM perguntas WHERE nivel = ?" + ORDER_BY_RANDOM_LIMIT;
+    private static final String QUERY_SELECT_NIVEL_RANDOM_LIMIT_FEITAS = "SELECT * FROM perguntas WHERE nivel = ? AND perguntas.id NOT IN ";
+    private static final String QUERY_BUSCAR_POR_NIVEL = "SELECT * FROM perguntas WHERE nivel = ?";
+    private static final String QUERY_BUSCAR_TODAS = "SELECT * FROM perguntas";
     private static final String OK = "Processo concluído";
     private static final int MESSAGE_TYPE = JOptionPane.INFORMATION_MESSAGE;
-    private static final String QUERY_BUSCAR_TODAS = "SELECT * FROM perguntas";
-    private static final String QUERY_BUSCAR_POR_NIVEL = "SELECT * FROM perguntas WHERE nivel = ?";
 
     private Connection connection;
 
@@ -119,10 +122,8 @@ public class PerguntaDAO {
     }
 
     public List<Pergunta> listar(String idsPerguntasFeitas, String nivel) {
-        String sql = "SELECT * FROM perguntas WHERE nivel = ? ORDER BY RANDOM() LIMIT 1";
-        if (!idsPerguntasFeitas.isEmpty()) {
-            sql = "SELECT * FROM perguntas WHERE nivel = ? AND perguntas.id NOT IN " + idsPerguntasFeitas + " ORDER BY RANDOM() LIMIT 1";
-        }
+        String sql = idsPerguntasFeitas.isEmpty() ? QUERY_SELECT_NIVEL_RANDOM_LIMIT : QUERY_SELECT_NIVEL_RANDOM_LIMIT_FEITAS + idsPerguntasFeitas + ORDER_BY_RANDOM_LIMIT;
+
         return buscar(sql, nivel);
     }
 
