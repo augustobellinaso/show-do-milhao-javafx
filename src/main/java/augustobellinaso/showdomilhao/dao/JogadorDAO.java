@@ -26,14 +26,14 @@ public class JogadorDAO {
     }
 
     public boolean adicionar(Jogador jogador) {
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(QUERY_INSERT)) {
-                statement.setString(2, jogador.getNome());
-                statement.setInt(3, jogador.getPontuacao());
-                statement.executeUpdate();
-                connection.commit();
-                return true;
-            }
+
+        try (PreparedStatement statement = connection.prepareStatement(QUERY_INSERT)) {
+            statement.setString(2, jogador.getNome());
+            statement.setInt(3, jogador.getPontuacao());
+            statement.executeUpdate();
+            connection.commit();
+            return true;
+
         } catch (Exception e) {
             LogUtil.getLogger(JogadorDAO.class).error(e.getCause().toString());
             return false;
@@ -41,14 +41,13 @@ public class JogadorDAO {
     }
 
     public void atualizar(Jogador jogador) {
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE)) {
-                statement.setString(1, jogador.getNome());
-                statement.setInt(2, jogador.getPontuacao());
-                statement.setInt(3, jogador.getId());
-                statement.executeUpdate();
-                connection.commit();
-            }
+        try (PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE)) {
+            statement.setString(1, jogador.getNome());
+            statement.setInt(2, jogador.getPontuacao());
+            statement.setInt(3, jogador.getId());
+            statement.executeUpdate();
+            connection.commit();
+
         } catch (Exception e) {
             LogUtil.getLogger(JogadorDAO.class).error(e.getCause().toString());
         }
@@ -56,17 +55,16 @@ public class JogadorDAO {
 
     private List<Jogador> buscar(String sql) {
         List<Jogador> jogadores = new ArrayList<>();
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    while (resultSet.next()) {
-                        Jogador jogador = new Jogador();
-                        jogador.setId(resultSet.getInt("id"));
-                        jogador.setNome(resultSet.getString("nome"));
-                        jogador.setLinha(resultSet.getRow());
-                        jogador.setPontuacao(resultSet.getInt("pontuacao"));
-                        jogadores.add(jogador);
-                    }
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Jogador jogador = new Jogador();
+                    jogador.setId(resultSet.getInt("id"));
+                    jogador.setNome(resultSet.getString("nome"));
+                    jogador.setLinha(resultSet.getRow());
+                    jogador.setPontuacao(resultSet.getInt("pontuacao"));
+                    jogadores.add(jogador);
                 }
             }
 
@@ -85,11 +83,10 @@ public class JogadorDAO {
     }
 
     public void zerarRanking() {
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(QUERY_ZERAR_RANKING)) {
-                statement.executeUpdate();
-                connection.commit();
-            }
+        try (PreparedStatement statement = connection.prepareStatement(QUERY_ZERAR_RANKING)) {
+            statement.executeUpdate();
+            connection.commit();
+
         } catch (Exception e) {
             LogUtil.getLogger(JogadorDAO.class).error(e.getCause().toString());
         }
