@@ -74,4 +74,17 @@ public class Pergunta {
     public void setResposta(String resposta) {
         this.resposta = resposta;
     }
+
+    @Override
+    public String toString() {
+        return "Pergunta{" +
+                "id=" + id +
+                ", nivel='" + nivel + '\'' +
+                ", enunciado='" + enunciado + '\'' +
+                ", alternativa1='" + alternativa1 + '\'' +
+                ", alternativa2='" + alternativa2 + '\'' +
+                ", alternativa3='" + alternativa3 + '\'' +
+                ", resposta='" + resposta + '\'' +
+                '}';
+    }
 }

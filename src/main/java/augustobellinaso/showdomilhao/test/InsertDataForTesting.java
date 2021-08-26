@@ -9,15 +9,17 @@ public class InsertDataForTesting {
 
     public static void main(String[] args) {
 //        Pergunta p = new Pergunta();
-//        p.setNivel("Fácil");
-//        p.setEnunciado("Qual a cor do cavalo brando de napoleão");
+//        p.setNivel("Dificil");
+//        p.setEnunciado("AAAA45");
 //        p.setAlternativa1("Alternativa 1");
 //        p.setAlternativa2("Alternativa 2");
 //        p.setAlternativa3("Alternativa 3");
 //        p.setResposta("branco");
-//        p.setId(1);
+//
+//        perguntaDAO.adicionar(p);
 
-        perguntaDAO.remover(1);
+        perguntaDAO.listar("","Fácil").forEach(x -> System.out.println(x));
+
 
     }
 }
