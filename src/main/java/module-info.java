@@ -1,4 +1,6 @@
 module augustobellinaso.showdomilhao {
+    opens augustobellinaso.showdomilhao.controller;
+
     requires javafx.controls;
     requires javafx.fxml;
     requires log4j;
