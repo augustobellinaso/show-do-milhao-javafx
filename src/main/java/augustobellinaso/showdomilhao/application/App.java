@@ -1,10 +1,10 @@
 package augustobellinaso.showdomilhao.application;
 
 import augustobellinaso.showdomilhao.util.LogConfigurator;
-import augustobellinaso.showdomilhao.util.LogUtil;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -17,10 +17,10 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            primaryStage.setTitle("Janela Java FX");
-            LogUtil.getLogger(App.class).info(primaryStage.getTitle());
-            BorderPane root = new BorderPane();
-            Scene scene = new Scene(root, 400, 400);
+            primaryStage.setTitle("Show do Milhão");
+
+            Pane telaInicial = FXMLLoader.load(getClass().getResource("/augustobellinaso/showdomilhao/view/LayoutTelaInicial.fxml"));
+            Scene scene = new Scene(telaInicial, 800, 600);
             primaryStage.setScene(scene);
             primaryStage.show();
 
