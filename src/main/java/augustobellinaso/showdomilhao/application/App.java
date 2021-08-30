@@ -21,6 +21,8 @@ public class App extends Application {
 
             Pane telaInicial = FXMLLoader.load(getClass().getResource("/augustobellinaso/showdomilhao/view/LayoutTelaInicial.fxml"));
             Scene scene = new Scene(telaInicial, 800, 600);
+
+            telaInicial.getStylesheets().add(getClass().getResource("/augustobellinaso/showdomilhao/css/buttonStyle.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
 
