@@ -60,7 +60,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>augustobellinaso.showdomilhao.application.App</mainClass>
+                    <mainClass>augustobellinaso.showdomilhao.application.ApplicationShowMilhao</mainClass>
                 </configuration>
             </plugin>
         </plugins>
