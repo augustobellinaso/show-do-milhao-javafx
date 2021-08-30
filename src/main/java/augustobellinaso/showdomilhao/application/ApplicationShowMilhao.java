@@ -12,11 +12,19 @@ import javafx.stage.Stage;
  */
 public class ApplicationShowMilhao extends Application {
 
+    private static Stage stage;
     private static final String FILE_MUSIC = "src/main/resources/augustobellinaso/showdomilhao/songs/som-abertura-2.mp3";
+
+    public static void main(String[] args) {
+        LogConfigurator.configure();
+        launch();
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
         try {
+            stage = primaryStage;
             primaryStage.setTitle("Show do Milhão");
 
             Pane telaInicial = FXMLLoader.load(getClass().getResource("/augustobellinaso/showdomilhao/view/LayoutTelaInicial.fxml"));
@@ -36,9 +44,10 @@ public class ApplicationShowMilhao extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        LogConfigurator.configure();
-        launch();
+    public static void changeScene(Scene scene) {
+        stage.setScene(scene);
     }
+
+
 
 }
