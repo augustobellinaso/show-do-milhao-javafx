@@ -37,6 +37,6 @@
         </TextField>
         <Button layoutX="310.0" layoutY="394.0" mnemonicParsing="false" text="Voltar" onAction="#voltar"
                 styleClass="defaultButton"/>
-        <Button layoutX="476.0" layoutY="394.0" mnemonicParsing="false" text="Começar" styleClass="defaultButton"/>
+        <Button layoutX="476.0" layoutY="394.0" mnemonicParsing="false" text="Começar" onAction="#startGame" styleClass="defaultButton"/>
     </children>
 </AnchorPane>

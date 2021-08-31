@@ -16,7 +16,13 @@ import java.util.ResourceBundle;
 
 public class ControllerLayoutTelaNome implements Initializable {
 
-    private static final String PARTICIPANTE = "src/main/resources/augustobellinaso/showdomilhao/songs/vamos-conhecer-agora-o-nosso-participante-voice.mp3";
+    private static final String PARTICIPANTE_VOICE = "src/main/resources/augustobellinaso/showdomilhao/songs/vamos-conhecer-agora-o-nosso-participante-voice.mp3";
+    private static final String START_GAME_VOICE = "src/main/resources/augustobellinaso/showdomilhao/songs/vai-comecar-o-show-do-milhao-voice.mp3";
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        changeVoice(PARTICIPANTE_VOICE);
+    }
 
     @FXML
     private void voltar(ActionEvent event) throws IOException {
@@ -25,10 +31,17 @@ public class ControllerLayoutTelaNome implements Initializable {
         ApplicationShowMilhao.changeScene(new Scene(pane, 800, 600));
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    private void startGame(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/augustobellinaso/showdomilhao/view/LayoutTelaPrincipal.fxml"));
+        ApplicationShowMilhao.changeScene(new Scene(pane, 800, 600));
+        changeVoice(START_GAME_VOICE);
+    }
+
+    private void changeVoice(String voice) {
         JLayer jLayer = new JLayer();
-        jLayer.tocar(new File(PARTICIPANTE));
+        jLayer.tocar(new File(voice));
         jLayer.start();
     }
+
 }
