@@ -23,7 +23,7 @@
                 <Image url="@../img/logo-show-milhao.jpg"/>
             </image>
         </ImageView>
-        <JFXButton id="closeButton" layoutX="729.0" layoutY="21.0" text="X" textFill="WHITE">
+        <JFXButton id="closeButton" layoutX="729.0" layoutY="21.0" text="X" textFill="WHITE" onAction="#fechar">
             <font>
                 <Font name="System Bold" size="28.0"/>
             </font>
