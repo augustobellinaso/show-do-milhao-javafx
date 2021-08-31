@@ -8,30 +8,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/background.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="161.0" fitWidth="337.0" layoutX="232.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/logo-show-milhao.jpg" />
-         </image>
-      </ImageView>
-      <JFXButton id="closeButton" layoutX="729.0" layoutY="21.0" text="X" textFill="WHITE" >
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </JFXButton>
-      <TextField alignment="CENTER" layoutX="280.0" layoutY="278.0" prefWidth="289.0" promptText="Digite seu nome aqui"
-      style="-fx-background-color: white; -fx-padding: 10; -fx-prompt-text-fill: gray;">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button layoutX="310.0" layoutY="394.0" mnemonicParsing="false" text="Voltar" styleClass="defaultButton" />
-      <Button layoutX="476.0" layoutY="394.0" mnemonicParsing="false" text="Começar" styleClass="defaultButton" />
-   </children>
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="augustobellinaso.showdomilhao.controller.ControllerLayoutTelaNome"
+>
+    <children>
+        <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/background.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="161.0" fitWidth="337.0" layoutX="232.0" layoutY="51.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../img/logo-show-milhao.jpg"/>
+            </image>
+        </ImageView>
+        <JFXButton id="closeButton" layoutX="729.0" layoutY="21.0" text="X" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="28.0"/>
+            </font>
+        </JFXButton>
+        <TextField alignment="CENTER" layoutX="280.0" layoutY="278.0" prefWidth="289.0"
+                   promptText="Digite seu nome aqui"
+                   style="-fx-background-color: white; -fx-padding: 10; -fx-prompt-text-fill: gray;">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </TextField>
+        <Button layoutX="310.0" layoutY="394.0" mnemonicParsing="false" text="Voltar" onAction="#voltar"
+                styleClass="defaultButton"/>
+        <Button layoutX="476.0" layoutY="394.0" mnemonicParsing="false" text="Começar" styleClass="defaultButton"/>
+    </children>
 </AnchorPane>
