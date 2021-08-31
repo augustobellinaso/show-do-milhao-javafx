@@ -14,6 +14,7 @@ public class ControllerLayoutTelaInicial {
     @FXML
     private void jogar(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/augustobellinaso/showdomilhao/view/LayoutTelaNome.fxml"));
+        pane.getStylesheets().add(getClass().getResource("/augustobellinaso/showdomilhao/css/buttonStyle.css").toExternalForm());
         ApplicationShowMilhao.changeScene(new Scene(pane, 800, 600));
     }
 }

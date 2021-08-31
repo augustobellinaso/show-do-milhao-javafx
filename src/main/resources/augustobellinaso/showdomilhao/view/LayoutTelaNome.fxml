@@ -20,17 +20,18 @@
             <Image url="@../img/logo-show-milhao.jpg" />
          </image>
       </ImageView>
-      <JFXButton layoutX="729.0" layoutY="21.0" text="X" textFill="WHITE">
+      <JFXButton id="closeButton" layoutX="729.0" layoutY="21.0" text="X" textFill="WHITE" >
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </JFXButton>
-      <TextField alignment="CENTER" layoutX="280.0" layoutY="278.0" prefWidth="289.0" promptText="Digite seu nome aqui">
+      <TextField alignment="CENTER" layoutX="280.0" layoutY="278.0" prefWidth="289.0" promptText="Digite seu nome aqui"
+      style="-fx-background-color: white; -fx-padding: 10; -fx-prompt-text-fill: gray;">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="310.0" layoutY="394.0" mnemonicParsing="false" text="Voltar" />
-      <Button layoutX="476.0" layoutY="394.0" mnemonicParsing="false" text="Começar" />
+      <Button layoutX="310.0" layoutY="394.0" mnemonicParsing="false" text="Voltar" styleClass="defaultButton" />
+      <Button layoutX="476.0" layoutY="394.0" mnemonicParsing="false" text="Começar" styleClass="defaultButton" />
    </children>
 </AnchorPane>
