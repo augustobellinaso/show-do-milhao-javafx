@@ -19,4 +19,10 @@ public class ControllerLayoutTelaInicial {
     private void fechar() {
         exit();
     }
+
+    @FXML
+    private void verRegras(ActionEvent event) throws IOException {
+        changeLayout(getClass(),"/augustobellinaso/showdomilhao/view/LayoutTelaRegras.fxml", "/augustobellinaso/showdomilhao/css/buttonStyle.css");
+    }
+
 }

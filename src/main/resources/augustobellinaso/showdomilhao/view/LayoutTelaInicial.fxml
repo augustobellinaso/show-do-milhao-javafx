@@ -23,7 +23,7 @@
         </ImageView>
         <Button layoutX="366.0" layoutY="241.0" mnemonicParsing="false" onAction="#jogar" styleClass="defaultButton"
                 text="Jogar"/>
-        <Button layoutX="363.0" layoutY="329.0" mnemonicParsing="false" styleClass="defaultButton" text="Regras"/>
+        <Button layoutX="363.0" layoutY="329.0" mnemonicParsing="false" styleClass="defaultButton" text="Regras" onAction="#verRegras"/>
         <Button layoutX="359.0" layoutY="419.0" mnemonicParsing="false" styleClass="defaultButton" text="Ranking"/>
         <Button layoutX="354.0" layoutY="502.0" mnemonicParsing="false" styleClass="defaultButton" text="Perguntas"/>
         <JFXButton id="closeButton" layoutX="696.0" layoutY="21.0" prefHeight="68.0" prefWidth="59.0" text="X"
