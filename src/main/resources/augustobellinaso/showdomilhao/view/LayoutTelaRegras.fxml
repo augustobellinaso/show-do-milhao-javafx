@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="augustobellinaso.showdomilhao.controller.ControllerLayoutTelaRegras">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,12 +27,12 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <JFXButton id="closeButton" layoutX="722.0" layoutY="29.0" text="X" textFill="WHITE">
+      <JFXButton id="closeButton" layoutX="722.0" layoutY="29.0" text="X" textFill="WHITE" onAction="#fechar">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
-      <Button layoutX="368.0" layoutY="515.0" mnemonicParsing="false" styleClass="defaultButton" text="Voltar" />
+      <Button layoutX="368.0" layoutY="515.0" mnemonicParsing="false" styleClass="defaultButton" text="Voltar" onAction="#voltar" />
       <ScrollPane layoutX="183.0" layoutY="88.0" prefHeight="395.0" prefWidth="480.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2100.0" prefWidth="486.0">
