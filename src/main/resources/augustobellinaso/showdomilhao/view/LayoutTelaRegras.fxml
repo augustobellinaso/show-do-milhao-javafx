@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
@@ -22,17 +21,18 @@
             <Image url="@../img/logo-show-milhao.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="269.0" layoutY="43.0" text="Regras do Jogo" textFill="WHITE">
+      <Label layoutX="269.0" layoutY="28.0" text="Regras do Jogo" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <JFXButton layoutX="722.0" layoutY="29.0" text="X" textFill="WHITE" id="closeButton">
+      <JFXButton id="closeButton" layoutX="722.0" layoutY="29.0" text="X" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
-      <ScrollPane layoutX="186.0" layoutY="103.0" prefHeight="395.0" prefWidth="480.0">
+      <Button layoutX="368.0" layoutY="515.0" mnemonicParsing="false" styleClass="defaultButton" text="Voltar" />
+      <ScrollPane layoutX="183.0" layoutY="88.0" prefHeight="395.0" prefWidth="480.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2100.0" prefWidth="486.0">
                <children>
@@ -41,6 +41,5 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button layoutX="76.0" layoutY="535.0" mnemonicParsing="false" text="Voltar" styleClass="defaultButton" />
    </children>
 </AnchorPane>
