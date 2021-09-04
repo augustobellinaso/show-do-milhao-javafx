@@ -22,7 +22,7 @@ public class ControllerLayoutTelaInicial {
 
     @FXML
     private void verRegras(ActionEvent event) throws IOException {
-        changeLayout(getClass(),"/augustobellinaso/showdomilhao/view/LayoutTelaRegras.fxml", "/augustobellinaso/showdomilhao/css/buttonStyle.css");
+        changeLayout(getClass(),"/augustobellinaso/showdomilhao/view/LayoutTelaRegras.fxml", "/augustobellinaso/showdomilhao/css/regrasStyle.css");
     }
 
 }
